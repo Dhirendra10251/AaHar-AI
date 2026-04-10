@@ -1634,6 +1634,206 @@
                 justify-content: center;
             }
         }
+
+        /* ─── DISCLAIMER BANNER ─── */
+        #disclaimer-banner {
+            position: fixed;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: #FFFBEB;
+            border-bottom: 1px solid #FCD34D;
+            padding: 7px 44px 7px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 500;
+            color: #78350F;
+            line-height: 1.45;
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.18);
+            transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        #disclaimer-banner.dismissed {
+            opacity: 0;
+            transform: translateY(-110%);
+            pointer-events: none;
+        }
+
+        .disclaimer-text {
+            text-align: center;
+            max-width: calc(100% - 40px);
+        }
+
+        .disclaimer-close {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #92400E;
+            font-size: 13px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            transition: background 0.2s, color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .disclaimer-close:hover {
+            background: rgba(120, 53, 15, 0.12);
+            color: #451A03;
+        }
+
+        /* ─── FINAL CTA SECTION ─── */
+        #cta-final {
+            background: linear-gradient(135deg, #C96B2B 0%, #B85520 50%, #A84418 100%);
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #cta-final::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(240, 160, 80, 0.35) 0%, rgba(240, 140, 50, 0.12) 45%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* decorative spice dots */
+        #cta-final::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 48px 48px, 24px 24px;
+            background-position: 0 0, 12px 12px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .cta-final-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .cta-final-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            padding: 6px 18px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .cta-final-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.6rem, 5vw, 3.2rem);
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .cta-final-heading em {
+            font-style: italic;
+            color: rgba(255, 235, 180, 0.95);
+        }
+
+        .cta-final-sub {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.80);
+            line-height: 1.65;
+            margin-bottom: 44px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-final-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-filled {
+            background: #FFFFFF;
+            color: #3D2010;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 15px 32px;
+            border-radius: 50px;
+            border: 2px solid #FFFFFF;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+        }
+
+        .cta-btn-filled:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+            background: #FFF8F0;
+        }
+
+        .cta-btn-outline {
+            background: transparent;
+            color: #FFFFFF;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 15px 32px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.70);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+        }
+
+        .cta-btn-outline:hover {
+            transform: translateY(-3px);
+            border-color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.10);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+        }
     </style>
 </head>
 
@@ -1658,6 +1858,12 @@
             <span></span><span></span><span></span>
         </button>
     </nav>
+
+    <!-- ▸ DISCLAIMER BANNER -->
+    <div id="disclaimer-banner" role="alert" aria-live="polite">
+        <span class="disclaimer-text">⚠ AaharAI provides general nutritional guidance only. It is not a substitute for professional medical advice.</span>
+        <button class="disclaimer-close" id="disclaimer-close-btn" aria-label="Dismiss disclaimer" onclick="dismissBanner()">✕</button>
+    </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
@@ -1969,6 +2175,33 @@
         </div>
     </section>
 
+    <!-- ▸ FINAL CTA -->
+    <section id="cta-final" aria-labelledby="cta-heading">
+        <div class="cta-final-inner fade-in">
+            <div class="cta-final-eyebrow">✦ Your Wellness Journey Starts Now</div>
+            <h2 class="cta-final-heading" id="cta-heading">
+                Your Body Knows<br><em>What It Needs.</em>
+            </h2>
+            <p class="cta-final-sub">
+                Let AaharAI translate that into your next meal.
+            </p>
+            <div class="cta-final-btns">
+                <a href="#try-it"
+                   class="cta-btn-filled"
+                   id="cta-check-symptoms-btn"
+                   onclick="document.getElementById('try-it').scrollIntoView({behavior:'smooth'}); return false;">
+                    🌿 Check Your Symptoms
+                </a>
+                <a href="#how-it-works"
+                   class="cta-btn-outline"
+                   id="cta-how-it-works-btn"
+                   onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'}); return false;">
+                    ▶ See How It Works
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- ▸ FOOTER -->
     <footer role="contentinfo">
         <div class="footer-inner">
@@ -2031,6 +2264,27 @@
         /* ── NAVBAR SCROLL ── */
         const navbar = document.getElementById('navbar');
         const scrollTopBtn = document.getElementById('scroll-top');
+        const disclaimerBanner = document.getElementById('disclaimer-banner');
+
+        function updateBannerPosition() {
+            const navH = navbar.offsetHeight;
+            if (!disclaimerBanner.classList.contains('dismissed')) {
+                disclaimerBanner.style.top = navH + 'px';
+                const bannerH = disclaimerBanner.offsetHeight;
+                document.getElementById('home').style.paddingTop = (navH + bannerH + 32) + 'px';
+            } else {
+                document.getElementById('home').style.paddingTop = (navH + 32) + 'px';
+            }
+        }
+
+        function dismissBanner() {
+            disclaimerBanner.classList.add('dismissed');
+            setTimeout(() => {
+                disclaimerBanner.style.display = 'none';
+                updateBannerPosition();
+            }, 320);
+        }
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 60) {
                 navbar.classList.add('scrolled');
@@ -2039,7 +2293,11 @@
                 navbar.classList.remove('scrolled');
                 scrollTopBtn.classList.remove('visible');
             }
+            updateBannerPosition();
         });
+
+        window.addEventListener('resize', updateBannerPosition);
+        updateBannerPosition();
 
         /* ── HAMBURGER MENU ── */
         const hamburgerBtn = document.getElementById('hamburger-btn');
