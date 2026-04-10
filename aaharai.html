@@ -1550,6 +1550,7 @@
         }
 
         @media (max-width: 768px) {
+            /* ── Navbar: collapse to hamburger ── */
             #navbar {
                 padding: 14px 20px;
             }
@@ -1566,18 +1567,41 @@
                 display: flex;
             }
 
+            /* ── Hero: stack vertically, text on top, card below ── */
             #home {
                 padding: 100px 20px 60px;
             }
 
             .hero-content {
+                grid-template-columns: 1fr;
                 gap: 36px;
+            }
+
+            .hero-left {
+                order: 1;
+            }
+
+            .hero-visual {
+                order: 2;
+                max-width: 380px;
+                margin: 0 auto;
+            }
+
+            /* ── Hide floating mini-cards on mobile ── */
+            .mini-card {
+                display: none;
+            }
+
+            /* ── H1: 38px on mobile ── */
+            .hero-title {
+                font-size: 2.375rem;
             }
 
             .section-inner {
                 padding: 0 20px;
             }
 
+            /* ── How it Works: single column ── */
             .steps-grid {
                 grid-template-columns: 1fr;
             }
@@ -1586,14 +1610,37 @@
                 display: none;
             }
 
+            /* ── Features: single column ── */
             .features-grid {
                 grid-template-columns: 1fr;
             }
 
+            /* ── Testimonials: horizontal snap-scroll carousel ── */
             .testimonials-grid {
-                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                gap: 16px;
+                padding-bottom: 20px;
+                /* hide scrollbar visually */
+                scrollbar-width: none;
             }
 
+            .testimonials-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .testimonial-card {
+                flex: 0 0 82vw;
+                max-width: 320px;
+                scroll-snap-align: start;
+                /* prevent height collapse */
+                height: auto;
+            }
+
+            /* ── Footer ── */
             .footer-top {
                 grid-template-columns: 1fr;
                 gap: 32px;
@@ -1608,20 +1655,26 @@
                 text-align: center;
             }
 
-            .mini-card-1 {
-                top: -10px;
-                right: -10px;
+            /* ── CTA section ── */
+            #cta-final {
+                padding: 70px 20px;
             }
 
-            .mini-card-2 {
-                bottom: 20px;
-                left: -15px;
+            .cta-final-btns {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cta-btn-filled,
+            .cta-btn-outline {
+                width: 100%;
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
 
             .hero-actions {
