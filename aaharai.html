@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AaharAI — AI-Powered Diet & Wellness for Indian Households</title>
+    <meta name="description"
+        content="AaharAI uses AI-powered nutrition intelligence to analyze your symptoms and recommend personalized Indian diet plans using locally available ingredients." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ─── CSS RESET & VARIABLES ─── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --saffron: #C96B2B;
+            --saffron-light: #E08040;
+            --saffron-pale: #F5C59A;
+            --green: #2B5C30;
+            --green-light: #3A7A40;
+            --green-pale: #D0E8D2;
+            --cream: #FEF8F0;
+            --cream-dark: #F5EAD8;
+            --brown: #3D2010;
+            --brown-light: #7A4520;
+            --white: #FFFFFF;
+            --text-dark: #2A1A08;
+            --text-mid: #5A3A20;
+            --text-light: #9A7A60;
+            --shadow-sm: 0 2px 12px rgba(61, 32, 16, 0.08);
+            --shadow-md: 0 8px 32px rgba(61, 32, 16, 0.12);
+            --shadow-lg: 0 16px 60px rgba(61, 32, 16, 0.18);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        section {
+            position: relative;
+        }
+
+        /* ─── SCROLL ANIMATIONS ─── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .stagger-1 {
+            transition-delay: 0.1s !important;
+        }
+
+        .stagger-2 {
+            transition-delay: 0.2s !important;
+        }
+
+        .stagger-3 {
+            transition-delay: 0.3s !important;
+        }
+
+        .stagger-4 {
+            transition-delay: 0.4s !important;
+        }
+
+        /* ─── NAVBAR ─── */
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(254, 248, 240, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(201, 107, 43, 0.12);
+            transition: var(--transition);
+        }
+
+        #navbar.scrolled {
+            padding: 12px 40px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .nav-logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--brown);
+        }
+
+        .nav-logo-text span {
+            color: var(--saffron);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-mid);
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.25s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--saffron);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--saffron);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            color: var(--white) !important;
+            padding: 10px 22px !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 16px rgba(201, 107, 43, 0.35);
+            transition: var(--transition) !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 107, 43, 0.45) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--brown);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: var(--cream);
+            padding: 20px 24px 32px;
+            border-bottom: 1px solid rgba(201, 107, 43, 0.12);
+            box-shadow: var(--shadow-md);
+            z-index: 999;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mobile-menu a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-mid);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(201, 107, 43, 0.1);
+            display: block;
+        }
+
+        .mobile-menu a:last-child {
+            border: none;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        /* ─── HERO ─── */
+        #home {
+            min-height: 100vh;
+            padding: 120px 40px 80px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--cream) 0%, #F9EDD8 40%, var(--cream-dark) 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201, 107, 43, 0.1);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--saffron);
+            border: 1px solid rgba(201, 107, 43, 0.2);
+            margin-bottom: 24px;
+            width: fit-content;
+        }
+
+        .hero-badge .dot {
+            width: 7px;
+            height: 7px;
+            background: var(--saffron);
+            border-radius: 50%;
+            animation: pulse-dot 1.8s infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            color: var(--brown);
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .hero-title .accent {
+            color: var(--saffron);
+            font-style: italic;
+        }
+
+        .hero-title .green-accent {
+            color: var(--green);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-mid);
+            margin-bottom: 36px;
+            max-width: 480px;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            color: var(--white);
+            padding: 15px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 24px rgba(201, 107, 43, 0.4);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(201, 107, 43, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--brown);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 2px solid rgba(61, 32, 16, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--saffron);
+            color: var(--saffron);
+            transform: translateY(-2px);
+        }
+
+        .hero-trust {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .trust-avatars {
+            display: flex;
+        }
+
+        .trust-avatars span {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--cream);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: -10px;
+            background: var(--cream-dark);
+        }
+
+        .trust-avatars span:first-child {
+            margin-left: 0;
+        }
+
+        .trust-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .trust-text strong {
+            color: var(--saffron);
+        }
+
+        /* ─── HERO FLOATING CARD ─── */
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card-wrap {
+            position: relative;
+            animation: float-card 5s ease-in-out infinite;
+        }
+
+        @keyframes float-card {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(1deg);
+            }
+        }
+
+        .hero-main-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(201, 107, 43, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--saffron-pale), var(--saffron));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .card-user-info strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--brown);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .card-user-info span {
+            font-size: 0.78rem;
+            color: var(--text-light);
+        }
+
+        .symptom-bubble {
+            background: var(--cream-dark);
+            border-radius: 16px 16px 16px 4px;
+            padding: 12px 18px;
+            font-size: 0.88rem;
+            color: var(--text-mid);
+            margin-bottom: 14px;
+            width: fit-content;
+            max-width: 240px;
+        }
+
+        .ai-response-bubble {
+            background: linear-gradient(135deg, rgba(43, 92, 48, 0.08), rgba(43, 92, 48, 0.04));
+            border: 1px solid var(--green-pale);
+            border-radius: 4px 16px 16px 16px;
+            padding: 14px 18px;
+            margin-left: auto;
+            max-width: 270px;
+        }
+
+        .ai-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--green);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ai-label::before {
+            content: '✦';
+            color: var(--saffron);
+        }
+
+        .ai-foods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .food-tag {
+            background: var(--white);
+            border: 1px solid var(--green-pale);
+            color: var(--green);
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 50px;
+            cursor: default;
+            transition: var(--transition);
+        }
+
+        .food-tag:hover {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+        }
+
+        .card-footer {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(201, 107, 43, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .plan-badge {
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 50px;
+        }
+
+        .card-score {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .card-score strong {
+            color: var(--green);
+            font-size: 1rem;
+        }
+
+        /* ─── FLOATING MINI CARDS ─── */
+        .mini-card {
+            position: absolute;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            box-shadow: var(--shadow-md);
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--brown);
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .mini-card-1 {
+            top: -20px;
+            right: -20px;
+            animation: float-mini-1 4s ease-in-out infinite;
+        }
+
+        .mini-card-2 {
+            bottom: 40px;
+            left: -30px;
+            animation: float-mini-2 5s ease-in-out infinite;
+        }
+
+        @keyframes float-mini-1 {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(2deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(-1deg);
+            }
+        }
+
+        @keyframes float-mini-2 {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(10px) rotate(1deg);
+            }
+        }
+
+        .mini-icon {
+            font-size: 1.2rem;
+        }
+
+        /* ─── DECORATIVE BG CIRCLES ─── */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .circle-1 {
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(201, 107, 43, 0.08) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(43, 92, 48, 0.06) 0%, transparent 70%);
+            bottom: 0;
+            left: -80px;
+        }
+
+        /* ─── SECTION COMMONS ─── */
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--saffron);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--saffron);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            color: var(--brown);
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            max-width: 520px;
+        }
+
+        /* ─── HOW IT WORKS ─── */
+        #how-it-works {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .how-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .how-header .section-label {
+            justify-content: center;
+        }
+
+        .how-header .section-label::before {
+            display: none;
+        }
+
+        .how-header .section-desc {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 48px;
+            left: calc(16.666% + 32px);
+            right: calc(16.666% + 32px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 40px 28px;
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(201, 107, 43, 0.08);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(201, 107, 43, 0.2);
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(201, 107, 43, 0.4);
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            color: var(--brown);
+            margin-bottom: 10px;
+        }
+
+        .step-desc {
+            font-size: 0.92rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+        }
+
+        /* ─── FEATURES ─── */
+        #features {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--cream) 0%, #F5EAD8 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            border: 1px solid rgba(201, 107, 43, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(201, 107, 43, 0.15);
+        }
+
+        .feature-icon-wrap {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 22px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon-wrap {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .icon-saffron {
+            background: rgba(201, 107, 43, 0.1);
+        }
+
+        .icon-green {
+            background: rgba(43, 92, 48, 0.1);
+        }
+
+        .icon-brown {
+            background: rgba(61, 32, 16, 0.08);
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.08);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            color: var(--brown);
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 0.92rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--saffron);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: rgba(201, 107, 43, 0.08);
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+
+        /* ─── LIVE DEMO ─── */
+        #try-it {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .demo-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 60px;
+        }
+
+        .demo-info h3 {
+            font-size: 1.8rem;
+            color: var(--brown);
+            margin-bottom: 14px;
+        }
+
+        .demo-info p {
+            color: var(--text-mid);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .quick-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .quick-chip {
+            background: var(--cream-dark);
+            border: 1px solid rgba(201, 107, 43, 0.15);
+            color: var(--text-mid);
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-chip:hover {
+            background: var(--saffron);
+            color: var(--white);
+            border-color: var(--saffron);
+            transform: translateY(-2px);
+        }
+
+        .chat-window {
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(201, 107, 43, 0.12);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .chat-titlebar {
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .chat-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .chat-dots span:first-child {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .chat-titlebar-text {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #4ade80;
+            animation: status-pulse 2s infinite;
+        }
+
+        @keyframes status-pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        #chat-messages {
+            height: 340px;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            scroll-behavior: smooth;
+        }
+
+        #chat-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(201, 107, 43, 0.2);
+            border-radius: 4px;
+        }
+
+        .msg {
+            display: flex;
+            flex-direction: column;
+            max-width: 85%;
+            animation: msg-in 0.3s ease;
+        }
+
+        @keyframes msg-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .msg.user {
+            align-self: flex-end;
+            align-items: flex-end;
+        }
+
+        .msg.ai {
+            align-self: flex-start;
+            align-items: flex-start;
+        }
+
+        .msg-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            line-height: 1.65;
+        }
+
+        .msg.user .msg-bubble {
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            color: var(--white);
+            border-radius: 16px 16px 4px 16px;
+        }
+
+        .msg.ai .msg-bubble {
+            background: var(--white);
+            color: var(--text-dark);
+            border-radius: 16px 16px 16px 4px;
+            border: 1px solid rgba(201, 107, 43, 0.1);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .msg-time {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-top: 4px;
+            padding: 0 4px;
+        }
+
+        .msg.ai .msg-sender {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--saffron);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .msg.ai .msg-sender::before {
+            content: '✦';
+        }
+
+        .ai-response-card {
+            background: var(--cream);
+            border: 1px solid rgba(43, 92, 48, 0.15);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 8px;
+        }
+
+        .ai-response-card .eat-avoid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .eat-col h5,
+        .avoid-col h5 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .eat-col h5 {
+            color: var(--green);
+        }
+
+        .avoid-col h5 {
+            color: #dc2626;
+        }
+
+        .eat-col ul,
+        .avoid-col ul {
+            list-style: none;
+        }
+
+        .eat-col li,
+        .avoid-col li {
+            font-size: 0.8rem;
+            color: var(--text-mid);
+            padding: 2px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .eat-col li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .avoid-col li::before {
+            content: '✗';
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--white);
+            border-radius: 16px 16px 16px 4px;
+            border: 1px solid rgba(201, 107, 43, 0.1);
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--saffron-pale);
+            animation: typing 1.3s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                background: var(--saffron-pale);
+            }
+
+            30% {
+                transform: translateY(-8px);
+                background: var(--saffron);
+            }
+        }
+
+        .chat-input-area {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(201, 107, 43, 0.1);
+            background: var(--white);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #symptom-input {
+            flex: 1;
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(201, 107, 43, 0.2);
+            background: var(--cream);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        #symptom-input:focus {
+            border-color: var(--saffron);
+            box-shadow: 0 0 0 3px rgba(201, 107, 43, 0.1);
+        }
+
+        #symptom-input::placeholder {
+            color: var(--text-light);
+        }
+
+        #send-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--white);
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(201, 107, 43, 0.4);
+            flex-shrink: 0;
+        }
+
+        #send-btn:hover {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 6px 20px rgba(201, 107, 43, 0.5);
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        #about {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--green) 0%, #1E4223 100%);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .testimonials-header .section-label {
+            color: var(--saffron-pale);
+            justify-content: center;
+        }
+
+        .testimonials-header .section-label::before {
+            background: var(--saffron-pale);
+        }
+
+        .testimonials-header .section-title {
+            color: var(--white);
+        }
+
+        .testimonials-header .section-desc {
+            color: rgba(255, 255, 255, 0.65);
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .stars {
+            color: #F59E0B;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-quote::before {
+            content: '\201C';
+            font-size: 2rem;
+            color: var(--saffron);
+            line-height: 0;
+            vertical-align: -0.5em;
+            margin-right: 4px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--saffron-pale), var(--saffron));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--white);
+            font-size: 0.92rem;
+        }
+
+        .author-meta {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 2px;
+        }
+
+        .author-condition {
+            display: inline-block;
+            margin-top: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--saffron-pale);
+            background: rgba(201, 107, 43, 0.2);
+            padding: 2px 8px;
+            border-radius: 50px;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--brown);
+            padding: 60px 40px 32px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand-text span {
+            color: var(--saffron);
+        }
+
+        .footer-tagline {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 20px;
+        }
+
+        .bharat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201, 107, 43, 0.2);
+            border: 1px solid rgba(201, 107, 43, 0.35);
+            color: var(--saffron-pale);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px;
+        }
+
+        .footer-col-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.55);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--saffron);
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom-text {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-bottom-text strong {
+            color: var(--saffron-pale);
+        }
+
+        /* ─── SCROLL TO TOP ─── */
+        #scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 900;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--saffron), #E0521A);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(201, 107, 43, 0.4);
+            transition: var(--transition);
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.8);
+        }
+
+        #scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        #scroll-top:hover {
+            transform: scale(1.1) translateY(-3px);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-visual {
+                max-width: 460px;
+                margin: 0 auto;
+            }
+
+            .demo-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #navbar {
+                padding: 14px 20px;
+            }
+
+            #navbar.scrolled {
+                padding: 10px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #home {
+                padding: 100px 20px 60px;
+            }
+
+            .hero-content {
+                gap: 36px;
+            }
+
+            .section-inner {
+                padding: 0 20px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid::before {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            footer {
+                padding: 48px 20px 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .mini-card-1 {
+                top: -10px;
+                right: -10px;
+            }
+
+            .mini-card-2 {
+                bottom: 20px;
+                left: -15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ▸ NAVBAR -->
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-logo">
+            <div class="nav-logo-icon" aria-hidden="true">🌿</div>
+            <span class="nav-logo-text">Aahar<span>AI</span></span>
+        </div>
+
+        <ul class="nav-links" id="nav-links-desktop">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#how-it-works">How it Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#try-it">Try it</a></li>
+            <li><a href="#about" class="nav-cta" id="nav-cta-btn">Check Symptoms</a></li>
+        </ul>
+
+        <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+        <a href="#home" onclick="closeMobileMenu()">Home</a>
+        <a href="#how-it-works" onclick="closeMobileMenu()">How it Works</a>
+        <a href="#features" onclick="closeMobileMenu()">Features</a>
+        <a href="#try-it" onclick="closeMobileMenu()">Try it</a>
+        <a href="#about" onclick="closeMobileMenu()">About</a>
+    </div>
+
+    <!-- ▸ HERO -->
+    <section id="home">
+        <div class="bg-circle circle-1" aria-hidden="true"></div>
+        <div class="bg-circle circle-2" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-left fade-left">
+                <div class="hero-badge">
+                    <span class="dot" aria-hidden="true"></span>
+                    Powered by Indian Nutrition Intelligence
+                </div>
+                <h1 class="hero-title">
+                    Eat <span class="accent">Right</span><br>
+                    for Your<br>
+                    <span class="green-accent">Body & Roots</span>
+                </h1>
+                <p class="hero-subtitle">
+                    AaharAI understands your symptoms, your kitchen, and your culture — and gives you a diet plan built
+                    around real Indian ingredients your family already loves.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn-primary"
+                        onclick="document.getElementById('try-it').scrollIntoView({behavior:'smooth'})"
+                        id="hero-cta-btn">
+                        <span>🌿</span> Check Your Symptoms
+                    </button>
+                    <button class="btn-secondary"
+                        onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})"
+                        id="hero-how-btn">
+                        <span>▶</span> How it Works
+                    </button>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-avatars" aria-label="User avatars">
+                        <span aria-hidden="true">👩</span>
+                        <span aria-hidden="true">👨</span>
+                        <span aria-hidden="true">👧</span>
+                        <span aria-hidden="true">🧔</span>
+                    </div>
+                    <div class="trust-text">
+                        Trusted by <strong>12,000+</strong> Indian families<br>across 28 states
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual fade-right">
+                <div class="hero-card-wrap">
+                    <!-- Mini floating cards -->
+                    <div class="mini-card mini-card-1" aria-hidden="true">
+                        <span class="mini-icon">⚡</span> Iron deficiency detected
+                    </div>
+                    <div class="mini-card mini-card-2" aria-hidden="true">
+                        <span class="mini-icon">📅</span> 7-Day plan ready!
+                    </div>
+
+                    <!-- Main card -->
+                    <div class="hero-main-card" role="img" aria-label="Sample AaharAI recommendation card">
+                        <div class="card-header">
+                            <div class="card-avatar" aria-hidden="true">🙍‍♀️</div>
+                            <div class="card-user-info">
+                                <strong>Priya, 32 — Delhi</strong>
+                                <span>Symptom reported: Fatigue &amp; Hair fall</span>
+                            </div>
+                        </div>
+                        <div class="symptom-bubble">"I feel tired all the time and my hair is falling more than usual…"
+                        </div>
+                        <div class="ai-response-bubble">
+                            <div class="ai-label">AaharAI Analysis</div>
+                            <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:10px;">Likely Iron &amp; B12
+                                deficiency. Here's what to eat:</p>
+                            <div class="ai-foods">
+                                <span class="food-tag">🥬 Spinach</span>
+                                <span class="food-tag">🫙 Masoor Dal</span>
+                                <span class="food-tag">🫐 Amla</span>
+                                <span class="food-tag">🥚 Eggs/Paneer</span>
+                                <span class="food-tag">🌱 Jaggery</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="plan-badge">✦ 7-Day Meal Plan</span>
+                            <div class="card-score">
+                                Wellness Score <strong>↑82%</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ▸ HOW IT WORKS -->
+    <section id="how-it-works">
+        <div class="section-inner">
+            <div class="how-header fade-in">
+                <div class="section-label" style="justify-content:center;">Process</div>
+                <h2 class="section-title">How AaharAI Works</h2>
+                <p class="section-desc">
+                    Three simple steps stand between you and a diet that actually works for your body — using
+                    ingredients from your local market.
+                </p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-icon" aria-hidden="true">💬</div>
+                    <h3 class="step-title">Tell Us Your Symptoms</h3>
+                    <p class="step-desc">Describe what you're feeling — fatigue, acidity, bloating, hair fall, or any
+                        health concern — in plain Hindi or English.</p>
+                </div>
+                <div class="step-card fade-in stagger-2">
+                    <div class="step-number">2</div>
+                    <div class="step-icon" aria-hidden="true">🧠</div>
+                    <h3 class="step-title">AI Analyzes Your Gaps</h3>
+                    <p class="step-desc">Our AI cross-references your symptoms with our Indian food nutrition database
+                        to identify vitamin and mineral deficiencies.</p>
+                </div>
+                <div class="step-card fade-in stagger-3">
+                    <div class="step-number">3</div>
+                    <div class="step-icon" aria-hidden="true">🍱</div>
+                    <h3 class="step-title">Get Your Indian Meal Plan</h3>
+                    <p class="step-desc">Receive a personalized 7-day meal plan with breakfast, lunch, and dinner — all
+                        using desi ingredients from your local sabzi mandi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ▸ FEATURES -->
+    <section id="features">
+        <div class="section-inner">
+            <div class="fade-in">
+                <div class="section-label">What We Offer</div>
+                <h2 class="section-title">Everything Your Health Needs</h2>
+                <p class="section-desc">Rooted in Ayurvedic wisdom, powered by modern AI — AaharAI brings you the best
+                    of both worlds.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon-wrap icon-saffron" aria-hidden="true">🩺</div>
+                    <h3 class="feature-title">Symptom-to-Diet AI</h3>
+                    <p class="feature-desc">Describe any health symptom and get instant, science-backed dietary
+                        recommendations tailored to Indian food habits and regional preferences.</p>
+                    <span class="feature-tag">Core Feature</span>
+                </div>
+                <div class="feature-card fade-in stagger-2">
+                    <div class="feature-icon-wrap icon-green" aria-hidden="true">🥘</div>
+                    <h3 class="feature-title">Indian Food Database</h3>
+                    <p class="feature-desc">Over 2,000+ Indian foods — from ragi and moringa to methi and karela —
+                        mapped to their exact nutritional profiles and Ayurvedic properties.</p>
+                    <span class="feature-tag">2,000+ Foods</span>
+                </div>
+                <div class="feature-card fade-in stagger-3">
+                    <div class="feature-icon-wrap icon-brown" aria-hidden="true">📅</div>
+                    <h3 class="feature-title">7-Day Meal Planner</h3>
+                    <p class="feature-desc">Get a complete weekly meal plan — breakfast, lunch, and dinner — with
+                        recipes, quantities, and alternatives suited to your state's cuisine.</p>
+                    <span class="feature-tag">Region-wise Plans</span>
+                </div>
+                <div class="feature-card fade-in stagger-4">
+                    <div class="feature-icon-wrap icon-blue" aria-hidden="true">🔔</div>
+                    <h3 class="feature-title">Daily Habit Nudge</h3>
+                    <p class="feature-desc">Gentle daily reminders to drink jeera water, eat on time, take a 10-minute
+                        walk, or add a specific immunity-boosting food to your next meal.</p>
+                    <span class="feature-tag">Daily Wellness</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ▸ LIVE DEMO -->
+    <section id="try-it">
+        <div class="section-inner">
+            <div class="how-header fade-in" style="text-align:left;">
+                <div class="section-label">Live Demo</div>
+                <h2 class="section-title">Try AaharAI Now</h2>
+                <p class="section-desc">Type your symptoms below — our AI will suggest dietary changes using everyday
+                    Indian foods.</p>
+            </div>
+            <div class="demo-layout">
+                <div class="demo-info fade-left">
+                    <h3>Describe What You Feel</h3>
+                    <p>Whether it's fatigue after lunch, that uncomfortable acidity after chai, or hair falling more
+                        than usual — AaharAI listens and responds with practical, desi food fixes.</p>
+                    <p style="margin-bottom:16px;"><strong style="color:var(--saffron);">Try these common
+                            symptoms:</strong></p>
+                    <div class="quick-suggestions">
+                        <button class="quick-chip" onclick="fillSymptom('I feel very tired and fatigued all day')"
+                            id="chip-fatigue">😴 Fatigue</button>
+                        <button class="quick-chip" onclick="fillSymptom('I have acidity and gas after meals')"
+                            id="chip-acidity">🔥 Acidity &amp; Gas</button>
+                        <button class="quick-chip" onclick="fillSymptom('I have a lot of hair fall')"
+                            id="chip-hairfall">💆 Hair Fall</button>
+                        <button class="quick-chip" onclick="fillSymptom('I feel bloated after eating')"
+                            id="chip-bloating">🫃 Bloating</button>
+                    </div>
+
+                    <div
+                        style="margin-top:32px;padding:20px;background:var(--cream-dark);border-radius:var(--radius);border:1px solid rgba(201,107,43,0.12);">
+                        <p style="font-size:0.82rem;color:var(--text-light);font-style:italic;">
+                            ⚠️ <strong style="color:var(--text-mid);">Disclaimer:</strong> AaharAI provides general
+                            nutritional guidance based on traditional Indian dietary knowledge. Always consult a
+                            qualified healthcare professional for medical diagnosis and treatment.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-right">
+                    <div class="chat-window" role="region" aria-label="AaharAI chat interface">
+                        <div class="chat-titlebar">
+                            <div class="chat-dots" aria-hidden="true">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="chat-titlebar-text">
+                                <span class="chat-status-dot" aria-hidden="true"></span>
+                                AaharAI — Diet Intelligence
+                            </div>
+                        </div>
+                        <div id="chat-messages" aria-live="polite" aria-label="Chat messages">
+                            <div class="msg ai">
+                                <div class="msg-sender">AaharAI</div>
+                                <div class="msg-bubble">
+                                    🙏 Namaste! I'm AaharAI, your personal Indian diet guide.<br><br>
+                                    Tell me what you're experiencing — fatigue, acidity, hair fall, or any health
+                                    concern — and I'll suggest the right foods from your kitchen to help you feel
+                                    better. <em>No doctor jargon, just desi wisdom.</em>
+                                </div>
+                                <div class="msg-time">Now</div>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="symptom-input"
+                                placeholder="Describe your symptoms (e.g. I feel tired and have headaches...)"
+                                aria-label="Type your health symptoms" onkeydown="if(event.key==='Enter') sendSymptom()"
+                                autocomplete="off" />
+                            <button id="send-btn" onclick="sendSymptom()" aria-label="Send message">➤</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ▸ TESTIMONIALS / ABOUT -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="testimonials-header fade-in">
+                <div class="section-label">Real Stories</div>
+                <h2 class="section-title">What Indian Families Say</h2>
+                <p class="section-desc">From Mumbai to Kolkata, AaharAI is helping families eat smarter using the wisdom
+                    of their own land.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-quote">
+                        I used to feel tired by 2 PM every day. AaharAI told me I was eating iron-blocking foods with my
+                        dal. Switched to eating jaggery and spinach before chai — I feel like a new person in just 3
+                        weeks!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" aria-hidden="true">👩‍🦱</div>
+                        <div>
+                            <div class="author-name">Supriya Menon</div>
+                            <div class="author-meta">35 years • Pune, Maharashtra</div>
+                            <div class="author-condition">Fatigue &amp; Low Energy</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in stagger-2">
+                    <div class="stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-quote">
+                        My husband had constant acidity for 2 years. We tried everything. AaharAI recommended ajwain
+                        water in the morning and stopping chai on an empty stomach. His antacid use dropped by 80%!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" aria-hidden="true">👩</div>
+                        <div>
+                            <div class="author-name">Rekha Sharma</div>
+                            <div class="author-meta">47 years • Jaipur, Rajasthan</div>
+                            <div class="author-condition">Managed Acidity</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in stagger-3">
+                    <div class="stars" aria-label="4 stars">★★★★☆</div>
+                    <p class="testimonial-quote">
+                        Meri beti ka hair fall bahut zyada ho gaya tha studies ke time. AaharAI ne protein ki kami
+                        batai. We added eggs and pumpkin seeds to her breakfast. In 6 weeks, hair fall almost stopped!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" aria-hidden="true">👨‍🦳</div>
+                        <div>
+                            <div class="author-name">Ramesh Verma</div>
+                            <div class="author-meta">52 years • Lucknow, UP</div>
+                            <div class="author-condition">Daughter's Hair Fall</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ▸ FOOTER -->
+    <footer role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand-text">Aahar<span>AI</span></div>
+                    <p class="footer-tagline">
+                        Where ancient Ayurvedic food wisdom meets modern AI intelligence — built specifically for Indian
+                        bodies, Indian kitchens, and Indian families.
+                    </p>
+                    <div class="bharat-badge">
+                        🇮🇳 Made for Bharat
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-col-title">Platform</div>
+                    <ul class="footer-links">
+                        <li><a href="#how-it-works">How it Works</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#try-it">Live Demo</a></li>
+                        <li><a href="#about">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Health Topics</div>
+                    <ul class="footer-links">
+                        <li><a href="#try-it">Fatigue &amp; Energy</a></li>
+                        <li><a href="#try-it">Acidity &amp; Digestion</a></li>
+                        <li><a href="#try-it">Hair Fall</a></li>
+                        <li><a href="#try-it">Diabetes Management</a></li>
+                        <li><a href="#try-it">Immunity Boost</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Connect</div>
+                    <ul class="footer-links">
+                        <li><a href="#home">About Us</a></li>
+                        <li><a href="#home">Blog</a></li>
+                        <li><a href="#home">Contact</a></li>
+                        <li><a href="#home">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-text">
+                    © 2025 <strong>AaharAI</strong> — All rights reserved. Not a substitute for medical advice.
+                </div>
+                <div class="footer-bottom-text">
+                    Built with ❤️ for <strong>Indian households</strong>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ▸ SCROLL TO TOP -->
+    <button id="scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <!-- ▸ JAVASCRIPT -->
+    <script>
+        /* ── NAVBAR SCROLL ── */
+        const navbar = document.getElementById('navbar');
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navbar.classList.add('scrolled');
+                scrollTopBtn.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        /* ── HAMBURGER MENU ── */
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            hamburgerBtn.setAttribute('aria-expanded', isOpen);
+        });
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        /* ── INTERSECTION OBSERVER ANIMATIONS ── */
+        const animatedEls = document.querySelectorAll('.fade-in, .fade-left, .fade-right');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12 });
+        animatedEls.forEach(el => observer.observe(el));
+
+        /* ── CHAT DEMO ── */
+        const chatMessages = document.getElementById('chat-messages');
+        const symptomInput = document.getElementById('symptom-input');
+
+        function fillSymptom(text) {
+            symptomInput.value = text;
+            symptomInput.focus();
+            // Auto-send after a very brief delay for UX
+            setTimeout(sendSymptom, 200);
+        }
+
+        function getTimeStr() {
+            return new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function appendMsg(role, content, isHTML = false) {
+            const div = document.createElement('div');
+            div.className = 'msg ' + role;
+            let inner = '';
+            if (role === 'ai') inner += `<div class="msg-sender">AaharAI</div>`;
+            if (isHTML) {
+                inner += `<div class="msg-bubble">${content}</div>`;
+            } else {
+                inner += `<div class="msg-bubble">${escapeHTML(content)}</div>`;
+            }
+            inner += `<div class="msg-time">${getTimeStr()}</div>`;
+            div.innerHTML = inner;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return div;
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        function showTyping() {
+            const div = document.createElement('div');
+            div.className = 'msg ai';
+            div.id = 'typing-indicator';
+            div.innerHTML = `
+      <div class="msg-sender">AaharAI</div>
+      <div class="typing-indicator" aria-label="AaharAI is typing">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>`;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTyping() {
+            const t = document.getElementById('typing-indicator');
+            if (t) t.remove();
+        }
+
+        const responses = {
+            fatigue: {
+                text: `🔍 <strong>Analysis:</strong> Your symptoms suggest <em>Iron and Vitamin B12 deficiency</em> — very common in Indian diets due to low meat consumption and tea-with-meals habit.`,
+                eat: ['🥬 Spinach (palak)', '🫘 Masoor/Chana dal', '🌱 Jaggery (gud)', '🥕 Beetroot', '🫐 Amla (Vit C for iron absorption)', '🥚 Eggs or Paneer'],
+                avoid: ['🍵 Tea/coffee within 1h of meals', '🧃 Packaged juices', '❌ Skipping breakfast'],
+                tip: '💡 <strong>Quick Tip:</strong> Add a small piece of jaggery after your dal for better iron absorption. Drink nimbu pani between meals — Vitamin C doubles iron uptake!'
+            },
+            acidity: {
+                text: `🔍 <strong>Analysis:</strong> Your symptoms point to <em>Acid Reflux / Hyperacidity</em>. In Indian diets, spicy food, empty-stomach chai, and large irregular meals are the main triggers.`,
+                eat: ['🍌 Banana (on empty stomach)', '🥛 Cold milk (small sip)', '🌿 Ajwain water (morning)', '🫚 Coconut water', '🥗 Boiled veggies', '🍚 Soft khichdi'],
+                avoid: ['🍛 Very spicy food', '🍟 Fried snacks (samosa, pakoda)', '☕ Tea on empty stomach', '🥤 Carbonated drinks', '🌶️ Excess red chilli'],
+                tip: '💡 <strong>Quick Fix:</strong> Soak 1 tsp ajwain in water overnight. Drink it first thing in the morning. In 3–5 days, you should notice significant relief!'
+            },
+            hairfall: {
+                text: `🔍 <strong>Analysis:</strong> Hair fall in Indian women often signals <em>Protein, Zinc, and Iron deficiency</em> — worsened by crash dieting, stress, and low protein intake.`,
+                eat: ['🥚 Eggs or Paneer (daily protein)', '🎃 Pumpkin seeds (zinc)', '🫐 Amla (collagen boost)', '🥜 Groundnuts / Almonds', '🥬 Methi leaves', '🌿 Curry leaves'],
+                avoid: ['🥗 Crash/fad dieting', '🍞 Excess refined maida', '❌ Skipping meals', '🍬 Excess sugar', '🥤 Carbonated drinks'],
+                tip: '💡 <strong>Dadi ka Nuskha:</strong> Soak methi seeds overnight, blend into a paste, apply on scalp 30 mins before hair wash. Also eat 5 soaked almonds every morning!'
+            },
+            bloating: {
+                text: `🔍 <strong>Analysis:</strong> Bloating is usually caused by <em>poor gut bacteria balance, excess maida intake, or swallowing air</em> while eating — all very common in urban Indian lifestyles.`,
+                eat: ['🌿 Jeera water (daily morning)', '🍶 Fresh curd / chaas', '🍚 Soft khichdi', '🫚 Ghee (1 tsp) with rice', '🥒 Cucumber & mint', '🍵 Saunf tea after meals'],
+                avoid: ['🍞 Maida-based foods (bread, biscuits)', '🥤 Carbonated drinks', '🫘 Raw salads (gas forming)', '🧅 Excess onion & garlic', '🌮 Packaged/fast food'],
+                tip: '💡 <strong>Quick Relief:</strong> Boil 1 tsp jeera + 1 tsp saunf in 2 cups water for 10 mins. Sip warm throughout the day. Your bloating should reduce by evening!'
+            }
+        };
+
+        function getAIResponse(input) {
+            const lower = input.toLowerCase();
+            let key = null;
+            if (/fatigue|tired|exhausted|weak|थका|थकान|energy/.test(lower)) key = 'fatigue';
+            else if (/acidity|acid|gas|heartburn|burning|jalan|जलन/.test(lower)) key = 'acidity';
+            else if (/hair|hairfall|hair fall|hair loss|baal|बाल/.test(lower)) key = 'hairfall';
+            else if (/bloat|bloating|full|stomach|पेट|phulna/.test(lower)) key = 'bloating';
+            return key ? responses[key] : null;
+        }
+
+        function buildResponseHTML(resp) {
+            const eatItems = resp.eat.map(f => `<li>${f}</li>`).join('');
+            const avoidItems = resp.avoid.map(f => `<li>${f}</li>`).join('');
+            return `
+      ${resp.text}
+      <div class="ai-response-card">
+        <div class="eat-avoid">
+          <div class="eat-col">
+            <h5>✦ Foods to Eat</h5>
+            <ul>${eatItems}</ul>
+          </div>
+          <div class="avoid-col">
+            <h5>✦ Foods to Avoid</h5>
+            <ul>${avoidItems}</ul>
+          </div>
+        </div>
+      </div>
+      <br>${resp.tip}
+      <br><br>📅 <strong>Want a full 7-Day Meal Plan</strong> using these foods? Tap the button below — it's personalized for your state's cuisine!
+      <br><br><button onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(135deg,#C96B2B,#E0521A);color:white;border:none;padding:10px 20px;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.82rem;">🌿 See 7-Day Plan →</button>
+    `;
+        }
+
+        function sendSymptom() {
+            const text = symptomInput.value.trim();
+            if (!text) return;
+            symptomInput.value = '';
+
+            // User message
+            appendMsg('user', text);
+
+            // Show typing
+            showTyping();
+
+            setTimeout(() => {
+                removeTyping();
+                const resp = getAIResponse(text);
+                if (resp) {
+                    appendMsg('ai', buildResponseHTML(resp), true);
+                } else {
+                    appendMsg('ai', `🙏 Thank you for sharing that. To give you the most accurate dietary guidance, could you describe your symptoms more specifically?\n\nFor example:\n• "I feel very tired after lunch"\n• "I have acidity and gas"\n• "My hair is falling excessively"\n• "I feel bloated after meals"\n\nOr try clicking one of the quick symptom buttons on the left!`, false);
+                }
+            }, 1600 + Math.random() * 600);
+        }
+    </script>
+
+</body>
+
+</html>
