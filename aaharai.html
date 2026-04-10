@@ -35,7 +35,7 @@
         }
 
         :root {
-            --saffron: #C96B2B;
+            --saffron: #B64D16;
             --saffron-light: #E08040;
             --saffron-pale: #F5C59A;
             --green: #2B5C30;
@@ -47,8 +47,8 @@
             --brown-light: #7A4520;
             --white: #FFFFFF;
             --text-dark: #2A1A08;
-            --text-mid: #5A3A20;
-            --text-light: #9A7A60;
+            --text-mid: #4A2814;
+            --text-light: #704F3A;
             --shadow-sm: 0 2px 12px rgba(61, 32, 16, 0.08);
             --shadow-md: 0 8px 32px rgba(61, 32, 16, 0.12);
             --shadow-lg: 0 16px 60px rgba(61, 32, 16, 0.18);
@@ -81,6 +81,31 @@
         a {
             text-decoration: none;
             color: inherit;
+        }
+
+        /* ─── ACCESSIBILITY ─── */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        [role="button"]:focus-visible {
+            outline: 3px solid var(--saffron);
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: var(--saffron);
+            color: var(--white);
+            padding: 16px 24px;
+            z-index: 99999;
+            font-weight: 600;
+            transition: top 0.2s ease-out;
+        }
+
+        .skip-link:focus {
+            top: 0;
         }
 
         img {
@@ -1904,6 +1929,7 @@
 </head>
 
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
 
     <!-- ▸ HEADER & NAVBAR -->
     <header>
@@ -1968,13 +1994,13 @@
                     <div class="hero-actions">
                         <button class="btn-primary"
                             onclick="document.getElementById('try-it').scrollIntoView({behavior:'smooth'})"
-                            id="hero-cta-btn">
-                            <span>🌿</span> Check Your Symptoms
+                            id="hero-cta-btn" aria-label="Check your symptoms with AaharAI">
+                            <span aria-hidden="true">🌿</span> Check Your Symptoms
                         </button>
                         <button class="btn-secondary"
                             onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})"
-                            id="hero-how-btn">
-                            <span>▶</span> How it Works
+                            id="hero-how-btn" aria-label="See how AaharAI works">
+                            <span aria-hidden="true">▶</span> How it Works
                         </button>
                     </div>
                     <div class="hero-trust">
@@ -2185,7 +2211,7 @@
                             <div class="chat-input-area">
                                 <input type="text" id="symptom-input"
                                     placeholder="Describe your symptoms (e.g. I feel tired and have headaches...)"
-                                    aria-label="Type your health symptoms"
+                                    aria-label="Describe your symptoms"
                                     onkeydown="if(event.key==='Enter') sendSymptom()" autocomplete="off" />
                                 <button id="send-btn" onclick="sendSymptom()" aria-label="Send message">➤</button>
                             </div>
