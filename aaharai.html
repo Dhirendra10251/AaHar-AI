@@ -6,8 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AaharAI — AI-Powered Diet & Wellness for Indian Households</title>
     <meta name="description"
-        content="AaharAI uses AI-powered nutrition intelligence to analyze your symptoms and recommend personalized Indian diet plans using locally available ingredients." />
+        content="AaharAI — India's AI-powered food and health advisor. Describe your symptoms and get personalized diet recommendations using everyday Indian ingredients." />
+    <meta name="theme-color" content="#C96B2B" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "AaharAI",
+      "description": "AI-powered diet recommendations for Indian households",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web"
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
@@ -1550,6 +1562,7 @@
         }
 
         @media (max-width: 768px) {
+
             /* ── Navbar: collapse to hamburger ── */
             #navbar {
                 padding: 14px 20px;
@@ -1706,8 +1719,8 @@
             line-height: 1.45;
             box-shadow: 0 2px 8px rgba(251, 191, 36, 0.18);
             transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                        opacity 0.3s ease,
-                        transform 0.3s ease;
+                opacity 0.3s ease,
+                transform 0.3s ease;
         }
 
         #disclaimer-banner.dismissed {
@@ -1775,8 +1788,8 @@
             position: absolute;
             inset: 0;
             background-image:
-                radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),
-                radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+                radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
             background-size: 48px 48px, 24px 24px;
             background-position: 0 0, 12px 12px;
             pointer-events: none;
@@ -1892,30 +1905,34 @@
 
 <body>
 
-    <!-- ▸ NAVBAR -->
-    <nav id="navbar" role="navigation" aria-label="Main navigation">
-        <div class="nav-logo">
-            <div class="nav-logo-icon" aria-hidden="true">🌿</div>
-            <span class="nav-logo-text">Aahar<span>AI</span></span>
-        </div>
+    <!-- ▸ HEADER & NAVBAR -->
+    <header>
+        <nav id="navbar" role="navigation" aria-label="Main navigation">
+            <div class="nav-logo">
+                <div class="nav-logo-icon" aria-hidden="true">🌿</div>
+                <span class="nav-logo-text">Aahar<span>AI</span></span>
+            </div>
 
-        <ul class="nav-links" id="nav-links-desktop">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#how-it-works">How it Works</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#try-it">Try it</a></li>
-            <li><a href="#about" class="nav-cta" id="nav-cta-btn">Check Symptoms</a></li>
-        </ul>
+            <ul class="nav-links" id="nav-links-desktop">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#try-it">Try it</a></li>
+                <li><a href="#about" class="nav-cta" id="nav-cta-btn">Check Symptoms</a></li>
+            </ul>
 
-        <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
+            <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
 
     <!-- ▸ DISCLAIMER BANNER -->
     <div id="disclaimer-banner" role="alert" aria-live="polite">
-        <span class="disclaimer-text">⚠ AaharAI provides general nutritional guidance only. It is not a substitute for professional medical advice.</span>
-        <button class="disclaimer-close" id="disclaimer-close-btn" aria-label="Dismiss disclaimer" onclick="dismissBanner()">✕</button>
+        <span class="disclaimer-text">⚠ AaharAI provides general nutritional guidance only. It is not a substitute for
+            professional medical advice.</span>
+        <button class="disclaimer-close" id="disclaimer-close-btn" aria-label="Dismiss disclaimer"
+            onclick="dismissBanner()">✕</button>
     </div>
 
     <!-- Mobile Menu -->
@@ -1928,257 +1945,268 @@
     </div>
 
     <!-- ▸ HERO -->
-    <section id="home">
-        <div class="bg-circle circle-1" aria-hidden="true"></div>
-        <div class="bg-circle circle-2" aria-hidden="true"></div>
-        <div class="hero-content">
-            <div class="hero-left fade-left">
-                <div class="hero-badge">
-                    <span class="dot" aria-hidden="true"></span>
-                    Powered by Indian Nutrition Intelligence
-                </div>
-                <h1 class="hero-title">
-                    Eat <span class="accent">Right</span><br>
-                    for Your<br>
-                    <span class="green-accent">Body & Roots</span>
-                </h1>
-                <p class="hero-subtitle">
-                    AaharAI understands your symptoms, your kitchen, and your culture — and gives you a diet plan built
-                    around real Indian ingredients your family already loves.
-                </p>
-                <div class="hero-actions">
-                    <button class="btn-primary"
-                        onclick="document.getElementById('try-it').scrollIntoView({behavior:'smooth'})"
-                        id="hero-cta-btn">
-                        <span>🌿</span> Check Your Symptoms
-                    </button>
-                    <button class="btn-secondary"
-                        onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})"
-                        id="hero-how-btn">
-                        <span>▶</span> How it Works
-                    </button>
-                </div>
-                <div class="hero-trust">
-                    <div class="trust-avatars" aria-label="User avatars">
-                        <span aria-hidden="true">👩</span>
-                        <span aria-hidden="true">👨</span>
-                        <span aria-hidden="true">👧</span>
-                        <span aria-hidden="true">🧔</span>
+    <main id="main">
+        <section id="home" aria-labelledby="home-heading">
+            <div class="bg-circle circle-1" aria-hidden="true"></div>
+            <div class="bg-circle circle-2" aria-hidden="true"></div>
+            <div class="hero-content">
+                <div class="hero-left fade-left">
+                    <div class="hero-badge">
+                        <span class="dot" aria-hidden="true"></span>
+                        Powered by Indian Nutrition Intelligence
                     </div>
-                    <div class="trust-text">
-                        Trusted by <strong>12,000+</strong> Indian families<br>across 28 states
+                    <h1 class="hero-title" id="home-heading">
+                        Eat <span class="accent">Right</span><br>
+                        for Your<br>
+                        <span class="green-accent">Body & Roots</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        AaharAI understands your symptoms, your kitchen, and your culture — and gives you a diet plan
+                        built
+                        around real Indian ingredients your family already loves.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn-primary"
+                            onclick="document.getElementById('try-it').scrollIntoView({behavior:'smooth'})"
+                            id="hero-cta-btn">
+                            <span>🌿</span> Check Your Symptoms
+                        </button>
+                        <button class="btn-secondary"
+                            onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})"
+                            id="hero-how-btn">
+                            <span>▶</span> How it Works
+                        </button>
                     </div>
-                </div>
-            </div>
-
-            <div class="hero-visual fade-right">
-                <div class="hero-card-wrap">
-                    <!-- Mini floating cards -->
-                    <div class="mini-card mini-card-1" aria-hidden="true">
-                        <span class="mini-icon">⚡</span> Iron deficiency detected
-                    </div>
-                    <div class="mini-card mini-card-2" aria-hidden="true">
-                        <span class="mini-icon">📅</span> 7-Day plan ready!
-                    </div>
-
-                    <!-- Main card -->
-                    <div class="hero-main-card" role="img" aria-label="Sample AaharAI recommendation card">
-                        <div class="card-header">
-                            <div class="card-avatar" aria-hidden="true">🙍‍♀️</div>
-                            <div class="card-user-info">
-                                <strong>Priya, 32 — Delhi</strong>
-                                <span>Symptom reported: Fatigue &amp; Hair fall</span>
-                            </div>
+                    <div class="hero-trust">
+                        <div class="trust-avatars" aria-label="User avatars">
+                            <span aria-hidden="true">👩</span>
+                            <span aria-hidden="true">👨</span>
+                            <span aria-hidden="true">👧</span>
+                            <span aria-hidden="true">🧔</span>
                         </div>
-                        <div class="symptom-bubble">"I feel tired all the time and my hair is falling more than usual…"
-                        </div>
-                        <div class="ai-response-bubble">
-                            <div class="ai-label">AaharAI Analysis</div>
-                            <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:10px;">Likely Iron &amp; B12
-                                deficiency. Here's what to eat:</p>
-                            <div class="ai-foods">
-                                <span class="food-tag">🥬 Spinach</span>
-                                <span class="food-tag">🫙 Masoor Dal</span>
-                                <span class="food-tag">🫐 Amla</span>
-                                <span class="food-tag">🥚 Eggs/Paneer</span>
-                                <span class="food-tag">🌱 Jaggery</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="plan-badge">✦ 7-Day Meal Plan</span>
-                            <div class="card-score">
-                                Wellness Score <strong>↑82%</strong>
-                            </div>
+                        <div class="trust-text">
+                            Trusted by <strong>12,000+</strong> Indian families<br>across 28 states
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ▸ HOW IT WORKS -->
-    <section id="how-it-works">
-        <div class="section-inner">
-            <div class="how-header fade-in">
-                <div class="section-label" style="justify-content:center;">Process</div>
-                <h2 class="section-title">How AaharAI Works</h2>
-                <p class="section-desc">
-                    Three simple steps stand between you and a diet that actually works for your body — using
-                    ingredients from your local market.
-                </p>
-            </div>
-            <div class="steps-grid">
-                <div class="step-card fade-in">
-                    <div class="step-number">1</div>
-                    <div class="step-icon" aria-hidden="true">💬</div>
-                    <h3 class="step-title">Tell Us Your Symptoms</h3>
-                    <p class="step-desc">Describe what you're feeling — fatigue, acidity, bloating, hair fall, or any
-                        health concern — in plain Hindi or English.</p>
-                </div>
-                <div class="step-card fade-in stagger-2">
-                    <div class="step-number">2</div>
-                    <div class="step-icon" aria-hidden="true">🧠</div>
-                    <h3 class="step-title">AI Analyzes Your Gaps</h3>
-                    <p class="step-desc">Our AI cross-references your symptoms with our Indian food nutrition database
-                        to identify vitamin and mineral deficiencies.</p>
-                </div>
-                <div class="step-card fade-in stagger-3">
-                    <div class="step-number">3</div>
-                    <div class="step-icon" aria-hidden="true">🍱</div>
-                    <h3 class="step-title">Get Your Indian Meal Plan</h3>
-                    <p class="step-desc">Receive a personalized 7-day meal plan with breakfast, lunch, and dinner — all
-                        using desi ingredients from your local sabzi mandi.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ▸ FEATURES -->
-    <section id="features">
-        <div class="section-inner">
-            <div class="fade-in">
-                <div class="section-label">What We Offer</div>
-                <h2 class="section-title">Everything Your Health Needs</h2>
-                <p class="section-desc">Rooted in Ayurvedic wisdom, powered by modern AI — AaharAI brings you the best
-                    of both worlds.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon-wrap icon-saffron" aria-hidden="true">🩺</div>
-                    <h3 class="feature-title">Symptom-to-Diet AI</h3>
-                    <p class="feature-desc">Describe any health symptom and get instant, science-backed dietary
-                        recommendations tailored to Indian food habits and regional preferences.</p>
-                    <span class="feature-tag">Core Feature</span>
-                </div>
-                <div class="feature-card fade-in stagger-2">
-                    <div class="feature-icon-wrap icon-green" aria-hidden="true">🥘</div>
-                    <h3 class="feature-title">Indian Food Database</h3>
-                    <p class="feature-desc">Over 2,000+ Indian foods — from ragi and moringa to methi and karela —
-                        mapped to their exact nutritional profiles and Ayurvedic properties.</p>
-                    <span class="feature-tag">2,000+ Foods</span>
-                </div>
-                <div class="feature-card fade-in stagger-3">
-                    <div class="feature-icon-wrap icon-brown" aria-hidden="true">📅</div>
-                    <h3 class="feature-title">7-Day Meal Planner</h3>
-                    <p class="feature-desc">Get a complete weekly meal plan — breakfast, lunch, and dinner — with
-                        recipes, quantities, and alternatives suited to your state's cuisine.</p>
-                    <span class="feature-tag">Region-wise Plans</span>
-                </div>
-                <div class="feature-card fade-in stagger-4">
-                    <div class="feature-icon-wrap icon-blue" aria-hidden="true">🔔</div>
-                    <h3 class="feature-title">Daily Habit Nudge</h3>
-                    <p class="feature-desc">Gentle daily reminders to drink jeera water, eat on time, take a 10-minute
-                        walk, or add a specific immunity-boosting food to your next meal.</p>
-                    <span class="feature-tag">Daily Wellness</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ▸ LIVE DEMO -->
-    <section id="try-it">
-        <div class="section-inner">
-            <div class="how-header fade-in" style="text-align:left;">
-                <div class="section-label">Live Demo</div>
-                <h2 class="section-title">Try AaharAI Now</h2>
-                <p class="section-desc">Type your symptoms below — our AI will suggest dietary changes using everyday
-                    Indian foods.</p>
-            </div>
-            <div class="demo-layout">
-                <div class="demo-info fade-left">
-                    <h3>Describe What You Feel</h3>
-                    <p>Whether it's fatigue after lunch, that uncomfortable acidity after chai, or hair falling more
-                        than usual — AaharAI listens and responds with practical, desi food fixes.</p>
-                    <p style="margin-bottom:16px;"><strong style="color:var(--saffron);">Try these common
-                            symptoms:</strong></p>
-                    <div class="quick-suggestions">
-                        <button class="quick-chip" onclick="fillSymptom('I feel very tired and fatigued all day')"
-                            id="chip-fatigue">😴 Fatigue</button>
-                        <button class="quick-chip" onclick="fillSymptom('I have acidity and gas after meals')"
-                            id="chip-acidity">🔥 Acidity &amp; Gas</button>
-                        <button class="quick-chip" onclick="fillSymptom('I have a lot of hair fall')"
-                            id="chip-hairfall">💆 Hair Fall</button>
-                        <button class="quick-chip" onclick="fillSymptom('I feel bloated after eating')"
-                            id="chip-bloating">🫃 Bloating</button>
-                    </div>
-
-                    <div
-                        style="margin-top:32px;padding:20px;background:var(--cream-dark);border-radius:var(--radius);border:1px solid rgba(201,107,43,0.12);">
-                        <p style="font-size:0.82rem;color:var(--text-light);font-style:italic;">
-                            ⚠️ <strong style="color:var(--text-mid);">Disclaimer:</strong> AaharAI provides general
-                            nutritional guidance based on traditional Indian dietary knowledge. Always consult a
-                            qualified healthcare professional for medical diagnosis and treatment.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="fade-right">
-                    <div class="chat-window" role="region" aria-label="AaharAI chat interface">
-                        <div class="chat-titlebar">
-                            <div class="chat-dots" aria-hidden="true">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div class="chat-titlebar-text">
-                                <span class="chat-status-dot" aria-hidden="true"></span>
-                                AaharAI — Diet Intelligence
-                            </div>
+                <div class="hero-visual fade-right">
+                    <div class="hero-card-wrap">
+                        <!-- Mini floating cards -->
+                        <div class="mini-card mini-card-1" aria-hidden="true">
+                            <span class="mini-icon">⚡</span> Iron deficiency detected
                         </div>
-                        <div id="chat-messages" aria-live="polite" aria-label="Chat messages">
-                            <div class="msg ai">
-                                <div class="msg-sender">AaharAI</div>
-                                <div class="msg-bubble">
-                                    🙏 Namaste! I'm AaharAI, your personal Indian diet guide.<br><br>
-                                    Tell me what you're experiencing — fatigue, acidity, hair fall, or any health
-                                    concern — and I'll suggest the right foods from your kitchen to help you feel
-                                    better. <em>No doctor jargon, just desi wisdom.</em>
+                        <div class="mini-card mini-card-2" aria-hidden="true">
+                            <span class="mini-icon">📅</span> 7-Day plan ready!
+                        </div>
+
+                        <!-- Main card -->
+                        <div class="hero-main-card" role="img" aria-label="Sample AaharAI recommendation card">
+                            <div class="card-header">
+                                <div class="card-avatar" aria-hidden="true">🙍‍♀️</div>
+                                <div class="card-user-info">
+                                    <strong>Priya, 32 — Delhi</strong>
+                                    <span>Symptom reported: Fatigue &amp; Hair fall</span>
                                 </div>
-                                <div class="msg-time">Now</div>
                             </div>
-                        </div>
-                        <div class="chat-input-area">
-                            <input type="text" id="symptom-input"
-                                placeholder="Describe your symptoms (e.g. I feel tired and have headaches...)"
-                                aria-label="Type your health symptoms" onkeydown="if(event.key==='Enter') sendSymptom()"
-                                autocomplete="off" />
-                            <button id="send-btn" onclick="sendSymptom()" aria-label="Send message">➤</button>
+                            <div class="symptom-bubble">"I feel tired all the time and my hair is falling more than
+                                usual…"
+                            </div>
+                            <div class="ai-response-bubble">
+                                <div class="ai-label">AaharAI Analysis</div>
+                                <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:10px;">Likely Iron &amp;
+                                    B12
+                                    deficiency. Here's what to eat:</p>
+                                <div class="ai-foods">
+                                    <span class="food-tag">🥬 Spinach</span>
+                                    <span class="food-tag">🫙 Masoor Dal</span>
+                                    <span class="food-tag">🫐 Amla</span>
+                                    <span class="food-tag">🥚 Eggs/Paneer</span>
+                                    <span class="food-tag">🌱 Jaggery</span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="plan-badge">✦ 7-Day Meal Plan</span>
+                                <div class="card-score">
+                                    Wellness Score <strong>↑82%</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- ▸ HOW IT WORKS -->
+        <section id="how-it-works" aria-labelledby="how-heading">
+            <div class="section-inner">
+                <div class="how-header fade-in">
+                    <div class="section-label" style="justify-content:center;">Process</div>
+                    <h2 class="section-title" id="how-heading">How AaharAI Works</h2>
+                    <p class="section-desc">
+                        Three simple steps stand between you and a diet that actually works for your body — using
+                        ingredients from your local market.
+                    </p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card fade-in">
+                        <div class="step-number">1</div>
+                        <div class="step-icon" aria-hidden="true">💬</div>
+                        <h3 class="step-title">Tell Us Your Symptoms</h3>
+                        <p class="step-desc">Describe what you're feeling — fatigue, acidity, bloating, hair fall, or
+                            any
+                            health concern — in plain Hindi or English.</p>
+                    </div>
+                    <div class="step-card fade-in stagger-2">
+                        <div class="step-number">2</div>
+                        <div class="step-icon" aria-hidden="true">🧠</div>
+                        <h3 class="step-title">AI Analyzes Your Gaps</h3>
+                        <p class="step-desc">Our AI cross-references your symptoms with our Indian food nutrition
+                            database
+                            to identify vitamin and mineral deficiencies.</p>
+                    </div>
+                    <div class="step-card fade-in stagger-3">
+                        <div class="step-number">3</div>
+                        <div class="step-icon" aria-hidden="true">🍱</div>
+                        <h3 class="step-title">Get Your Indian Meal Plan</h3>
+                        <p class="step-desc">Receive a personalized 7-day meal plan with breakfast, lunch, and dinner —
+                            all
+                            using desi ingredients from your local sabzi mandi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ▸ FEATURES -->
+        <section id="features" aria-labelledby="features-heading">
+            <div class="section-inner">
+                <div class="fade-in">
+                    <div class="section-label">What We Offer</div>
+                    <h2 class="section-title" id="features-heading">Everything Your Health Needs</h2>
+                    <p class="section-desc">Rooted in Ayurvedic wisdom, powered by modern AI — AaharAI brings you the
+                        best
+                        of both worlds.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon-wrap icon-saffron" aria-hidden="true">🩺</div>
+                        <h3 class="feature-title">Symptom-to-Diet AI</h3>
+                        <p class="feature-desc">Describe any health symptom and get instant, science-backed dietary
+                            recommendations tailored to Indian food habits and regional preferences.</p>
+                        <span class="feature-tag">Core Feature</span>
+                    </div>
+                    <div class="feature-card fade-in stagger-2">
+                        <div class="feature-icon-wrap icon-green" aria-hidden="true">🥘</div>
+                        <h3 class="feature-title">Indian Food Database</h3>
+                        <p class="feature-desc">Over 2,000+ Indian foods — from ragi and moringa to methi and karela —
+                            mapped to their exact nutritional profiles and Ayurvedic properties.</p>
+                        <span class="feature-tag">2,000+ Foods</span>
+                    </div>
+                    <div class="feature-card fade-in stagger-3">
+                        <div class="feature-icon-wrap icon-brown" aria-hidden="true">📅</div>
+                        <h3 class="feature-title">7-Day Meal Planner</h3>
+                        <p class="feature-desc">Get a complete weekly meal plan — breakfast, lunch, and dinner — with
+                            recipes, quantities, and alternatives suited to your state's cuisine.</p>
+                        <span class="feature-tag">Region-wise Plans</span>
+                    </div>
+                    <div class="feature-card fade-in stagger-4">
+                        <div class="feature-icon-wrap icon-blue" aria-hidden="true">🔔</div>
+                        <h3 class="feature-title">Daily Habit Nudge</h3>
+                        <p class="feature-desc">Gentle daily reminders to drink jeera water, eat on time, take a
+                            10-minute
+                            walk, or add a specific immunity-boosting food to your next meal.</p>
+                        <span class="feature-tag">Daily Wellness</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ▸ LIVE DEMO -->
+        <section id="try-it" aria-labelledby="try-heading">
+            <div class="section-inner">
+                <div class="how-header fade-in" style="text-align:left;">
+                    <div class="section-label">Live Demo</div>
+                    <h2 class="section-title" id="try-heading">Try AaharAI Now</h2>
+                    <p class="section-desc">Type your symptoms below — our AI will suggest dietary changes using
+                        everyday
+                        Indian foods.</p>
+                </div>
+                <div class="demo-layout">
+                    <div class="demo-info fade-left">
+                        <h3>Describe What You Feel</h3>
+                        <p>Whether it's fatigue after lunch, that uncomfortable acidity after chai, or hair falling more
+                            than usual — AaharAI listens and responds with practical, desi food fixes.</p>
+                        <p style="margin-bottom:16px;"><strong style="color:var(--saffron);">Try these common
+                                symptoms:</strong></p>
+                        <div class="quick-suggestions">
+                            <button class="quick-chip" onclick="fillSymptom('I feel very tired and fatigued all day')"
+                                id="chip-fatigue">😴 Fatigue</button>
+                            <button class="quick-chip" onclick="fillSymptom('I have acidity and gas after meals')"
+                                id="chip-acidity">🔥 Acidity &amp; Gas</button>
+                            <button class="quick-chip" onclick="fillSymptom('I have a lot of hair fall')"
+                                id="chip-hairfall">💆 Hair Fall</button>
+                            <button class="quick-chip" onclick="fillSymptom('I feel bloated after eating')"
+                                id="chip-bloating">🫃 Bloating</button>
+                        </div>
+
+                        <div
+                            style="margin-top:32px;padding:20px;background:var(--cream-dark);border-radius:var(--radius);border:1px solid rgba(201,107,43,0.12);">
+                            <p style="font-size:0.82rem;color:var(--text-light);font-style:italic;">
+                                ⚠️ <strong style="color:var(--text-mid);">Disclaimer:</strong> AaharAI provides general
+                                nutritional guidance based on traditional Indian dietary knowledge. Always consult a
+                                qualified healthcare professional for medical diagnosis and treatment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fade-right">
+                        <div class="chat-window" role="region" aria-label="AaharAI chat interface">
+                            <div class="chat-titlebar">
+                                <div class="chat-dots" aria-hidden="true">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="chat-titlebar-text">
+                                    <span class="chat-status-dot" aria-hidden="true"></span>
+                                    AaharAI — Diet Intelligence
+                                </div>
+                            </div>
+                            <div id="chat-messages" aria-live="polite" aria-label="Chat messages">
+                                <div class="msg ai">
+                                    <div class="msg-sender">AaharAI</div>
+                                    <div class="msg-bubble">
+                                        🙏 Namaste! I'm AaharAI, your personal Indian diet guide.<br><br>
+                                        Tell me what you're experiencing — fatigue, acidity, hair fall, or any health
+                                        concern — and I'll suggest the right foods from your kitchen to help you feel
+                                        better. <em>No doctor jargon, just desi wisdom.</em>
+                                    </div>
+                                    <div class="msg-time">Now</div>
+                                </div>
+                            </div>
+                            <div class="chat-input-area">
+                                <input type="text" id="symptom-input"
+                                    placeholder="Describe your symptoms (e.g. I feel tired and have headaches...)"
+                                    aria-label="Type your health symptoms"
+                                    onkeydown="if(event.key==='Enter') sendSymptom()" autocomplete="off" />
+                                <button id="send-btn" onclick="sendSymptom()" aria-label="Send message">➤</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <!-- ▸ TESTIMONIALS / ABOUT -->
-    <section id="about">
+    <section id="about" aria-labelledby="about-heading">
         <div class="section-inner">
             <div class="testimonials-header fade-in">
                 <div class="section-label">Real Stories</div>
-                <h2 class="section-title">What Indian Families Say</h2>
-                <p class="section-desc">From Mumbai to Kolkata, AaharAI is helping families eat smarter using the wisdom
+                <h2 class="section-title" id="about-heading">What Indian Families Say</h2>
+                <p class="section-desc">From Mumbai to Kolkata, AaharAI is helping families eat smarter using the
+                    wisdom
                     of their own land.</p>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
+                <article class="testimonial-card fade-in">
                     <div class="stars" aria-label="5 stars">★★★★★</div>
                     <p class="testimonial-quote">
                         I used to feel tired by 2 PM every day. AaharAI told me I was eating iron-blocking foods with my
@@ -2193,8 +2221,8 @@
                             <div class="author-condition">Fatigue &amp; Low Energy</div>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card fade-in stagger-2">
+                </article>
+                <article class="testimonial-card fade-in stagger-2">
                     <div class="stars" aria-label="5 stars">★★★★★</div>
                     <p class="testimonial-quote">
                         My husband had constant acidity for 2 years. We tried everything. AaharAI recommended ajwain
@@ -2208,8 +2236,8 @@
                             <div class="author-condition">Managed Acidity</div>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card fade-in stagger-3">
+                </article>
+                <article class="testimonial-card fade-in stagger-3">
                     <div class="stars" aria-label="4 stars">★★★★☆</div>
                     <p class="testimonial-quote">
                         Meri beti ka hair fall bahut zyada ho gaya tha studies ke time. AaharAI ne protein ki kami
@@ -2223,255 +2251,260 @@
                             <div class="author-condition">Daughter's Hair Fall</div>
                         </div>
                     </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+        <!-- ▸ FINAL CTA -->
+        <section id="cta-final" aria-labelledby="cta-heading">
+            <div class="cta-final-inner fade-in">
+                <div class="cta-final-eyebrow">✦ Your Wellness Journey Starts Now</div>
+                <h2 class="cta-final-heading" id="cta-heading">
+                    Your Body Knows<br><em>What It Needs.</em>
+                </h2>
+                <p class="cta-final-sub">
+                    Let AaharAI translate that into your next meal.
+                </p>
+                <div class="cta-final-btns">
+                    <a href="#try-it" class="cta-btn-filled" id="cta-check-symptoms-btn"
+                        onclick="document.getElementById('try-it').scrollIntoView({behavior:'smooth'}); return false;">
+                        🌿 Check Your Symptoms
+                    </a>
+                    <a href="#how-it-works" class="cta-btn-outline" id="cta-how-it-works-btn"
+                        onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'}); return false;">
+                        ▶ See How It Works
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- ▸ FINAL CTA -->
-    <section id="cta-final" aria-labelledby="cta-heading">
-        <div class="cta-final-inner fade-in">
-            <div class="cta-final-eyebrow">✦ Your Wellness Journey Starts Now</div>
-            <h2 class="cta-final-heading" id="cta-heading">
-                Your Body Knows<br><em>What It Needs.</em>
-            </h2>
-            <p class="cta-final-sub">
-                Let AaharAI translate that into your next meal.
-            </p>
-            <div class="cta-final-btns">
-                <a href="#try-it"
-                   class="cta-btn-filled"
-                   id="cta-check-symptoms-btn"
-                   onclick="document.getElementById('try-it').scrollIntoView({behavior:'smooth'}); return false;">
-                    🌿 Check Your Symptoms
-                </a>
-                <a href="#how-it-works"
-                   class="cta-btn-outline"
-                   id="cta-how-it-works-btn"
-                   onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'}); return false;">
-                    ▶ See How It Works
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ▸ FOOTER -->
-    <footer role="contentinfo">
-        <div class="footer-inner">
-            <div class="footer-top">
-                <div>
-                    <div class="footer-brand-text">Aahar<span>AI</span></div>
-                    <p class="footer-tagline">
-                        Where ancient Ayurvedic food wisdom meets modern AI intelligence — built specifically for Indian
-                        bodies, Indian kitchens, and Indian families.
-                    </p>
-                    <div class="bharat-badge">
-                        🇮🇳 Made for Bharat
+        <!-- ▸ FOOTER -->
+        <footer role="contentinfo">
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <div>
+                        <div class="footer-brand-text">Aahar<span>AI</span></div>
+                        <p class="footer-tagline">
+                            Where ancient Ayurvedic food wisdom meets modern AI intelligence — built specifically for
+                            Indian
+                            bodies, Indian kitchens, and Indian families.
+                        </p>
+                        <div class="bharat-badge">
+                            🇮🇳 Made for Bharat
+                        </div>
+                    </div>
+                    <div>
+                        <div class="footer-col-title">Platform</div>
+                        <nav aria-label="Footer Platform Navigation">
+                            <ul class="footer-links">
+                                <li><a href="#how-it-works">How it Works</a></li>
+                                <li><a href="#features">Features</a></li>
+                                <li><a href="#try-it">Live Demo</a></li>
+                                <li><a href="#about">Testimonials</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div>
+                        <div class="footer-col-title">Health Topics</div>
+                        <nav aria-label="Footer Health Navigation">
+                            <ul class="footer-links">
+                                <li><a href="#try-it">Fatigue &amp; Energy</a></li>
+                                <li><a href="#try-it">Acidity &amp; Digestion</a></li>
+                                <li><a href="#try-it">Hair Fall</a></li>
+                                <li><a href="#try-it">Diabetes Management</a></li>
+                                <li><a href="#try-it">Immunity Boost</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div>
+                        <div class="footer-col-title">Connect</div>
+                        <nav aria-label="Footer Connect Navigation">
+                            <ul class="footer-links">
+                                <li><a href="#home">About Us</a></li>
+                                <li><a href="#home">Blog</a></li>
+                                <li><a href="#home">Contact</a></li>
+                                <li><a href="#home">Privacy Policy</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
-                <div>
-                    <div class="footer-col-title">Platform</div>
-                    <ul class="footer-links">
-                        <li><a href="#how-it-works">How it Works</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#try-it">Live Demo</a></li>
-                        <li><a href="#about">Testimonials</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-col-title">Health Topics</div>
-                    <ul class="footer-links">
-                        <li><a href="#try-it">Fatigue &amp; Energy</a></li>
-                        <li><a href="#try-it">Acidity &amp; Digestion</a></li>
-                        <li><a href="#try-it">Hair Fall</a></li>
-                        <li><a href="#try-it">Diabetes Management</a></li>
-                        <li><a href="#try-it">Immunity Boost</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-col-title">Connect</div>
-                    <ul class="footer-links">
-                        <li><a href="#home">About Us</a></li>
-                        <li><a href="#home">Blog</a></li>
-                        <li><a href="#home">Contact</a></li>
-                        <li><a href="#home">Privacy Policy</a></li>
-                    </ul>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-text">
+                        © 2025 <strong>AaharAI</strong> — All rights reserved. Not a substitute for medical advice.
+                    </div>
+                    <div class="footer-bottom-text">
+                        Built with ❤️ for <strong>Indian households</strong>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="footer-bottom-text">
-                    © 2025 <strong>AaharAI</strong> — All rights reserved. Not a substitute for medical advice.
-                </div>
-                <div class="footer-bottom-text">
-                    Built with ❤️ for <strong>Indian households</strong>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    <!-- ▸ SCROLL TO TOP -->
-    <button id="scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+        <!-- ▸ SCROLL TO TOP -->
+        <button id="scroll-top" aria-label="Scroll to top"
+            onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-    <!-- ▸ JAVASCRIPT -->
-    <script>
-        /* ── NAVBAR SCROLL ── */
-        const navbar = document.getElementById('navbar');
-        const scrollTopBtn = document.getElementById('scroll-top');
-        const disclaimerBanner = document.getElementById('disclaimer-banner');
+        <!-- ▸ JAVASCRIPT -->
+        <script>
+            /* ── NAVBAR SCROLL ── */
+            const navbar = document.getElementById('navbar');
+            const scrollTopBtn = document.getElementById('scroll-top');
+            const disclaimerBanner = document.getElementById('disclaimer-banner');
 
-        function updateBannerPosition() {
-            const navH = navbar.offsetHeight;
-            if (!disclaimerBanner.classList.contains('dismissed')) {
-                disclaimerBanner.style.top = navH + 'px';
-                const bannerH = disclaimerBanner.offsetHeight;
-                document.getElementById('home').style.paddingTop = (navH + bannerH + 32) + 'px';
-            } else {
-                document.getElementById('home').style.paddingTop = (navH + 32) + 'px';
-            }
-        }
-
-        function dismissBanner() {
-            disclaimerBanner.classList.add('dismissed');
-            setTimeout(() => {
-                disclaimerBanner.style.display = 'none';
-                updateBannerPosition();
-            }, 320);
-        }
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 60) {
-                navbar.classList.add('scrolled');
-                scrollTopBtn.classList.add('visible');
-            } else {
-                navbar.classList.remove('scrolled');
-                scrollTopBtn.classList.remove('visible');
-            }
-            updateBannerPosition();
-        });
-
-        window.addEventListener('resize', updateBannerPosition);
-        updateBannerPosition();
-
-        /* ── HAMBURGER MENU ── */
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        hamburgerBtn.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.toggle('open');
-            hamburgerBtn.setAttribute('aria-expanded', isOpen);
-        });
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('open');
-            hamburgerBtn.setAttribute('aria-expanded', 'false');
-        }
-
-        /* ── INTERSECTION OBSERVER ANIMATIONS ── */
-        const animatedEls = document.querySelectorAll('.fade-in, .fade-left, .fade-right');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            function updateBannerPosition() {
+                const navH = navbar.offsetHeight;
+                if (!disclaimerBanner.classList.contains('dismissed')) {
+                    disclaimerBanner.style.top = navH + 'px';
+                    const bannerH = disclaimerBanner.offsetHeight;
+                    document.getElementById('home').style.paddingTop = (navH + bannerH + 32) + 'px';
+                } else {
+                    document.getElementById('home').style.paddingTop = (navH + 32) + 'px';
                 }
-            });
-        }, { threshold: 0.12 });
-        animatedEls.forEach(el => observer.observe(el));
-
-        /* ── CHAT DEMO ── */
-        const chatMessages = document.getElementById('chat-messages');
-        const symptomInput = document.getElementById('symptom-input');
-
-        function fillSymptom(text) {
-            symptomInput.value = text;
-            symptomInput.focus();
-            // Auto-send after a very brief delay for UX
-            setTimeout(sendSymptom, 200);
-        }
-
-        function getTimeStr() {
-            return new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-        }
-
-        function appendMsg(role, content, isHTML = false) {
-            const div = document.createElement('div');
-            div.className = 'msg ' + role;
-            let inner = '';
-            if (role === 'ai') inner += `<div class="msg-sender">AaharAI</div>`;
-            if (isHTML) {
-                inner += `<div class="msg-bubble">${content}</div>`;
-            } else {
-                inner += `<div class="msg-bubble">${escapeHTML(content)}</div>`;
             }
-            inner += `<div class="msg-time">${getTimeStr()}</div>`;
-            div.innerHTML = inner;
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            return div;
-        }
 
-        function escapeHTML(str) {
-            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        }
+            function dismissBanner() {
+                disclaimerBanner.classList.add('dismissed');
+                setTimeout(() => {
+                    disclaimerBanner.style.display = 'none';
+                    updateBannerPosition();
+                }, 320);
+            }
 
-        function showTyping() {
-            const div = document.createElement('div');
-            div.className = 'msg ai';
-            div.id = 'typing-indicator';
-            div.innerHTML = `
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    navbar.classList.add('scrolled');
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    navbar.classList.remove('scrolled');
+                    scrollTopBtn.classList.remove('visible');
+                }
+                updateBannerPosition();
+            });
+
+            window.addEventListener('resize', updateBannerPosition);
+            updateBannerPosition();
+
+            /* ── HAMBURGER MENU ── */
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburgerBtn.addEventListener('click', () => {
+                const isOpen = mobileMenu.classList.toggle('open');
+                hamburgerBtn.setAttribute('aria-expanded', isOpen);
+            });
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('open');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            /* ── INTERSECTION OBSERVER ANIMATIONS ── */
+            const animatedEls = document.querySelectorAll('.fade-in, .fade-left, .fade-right');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.12 });
+            animatedEls.forEach(el => observer.observe(el));
+
+            /* ── CHAT DEMO ── */
+            const chatMessages = document.getElementById('chat-messages');
+            const symptomInput = document.getElementById('symptom-input');
+
+            function fillSymptom(text) {
+                symptomInput.value = text;
+                symptomInput.focus();
+                // Auto-send after a very brief delay for UX
+                setTimeout(sendSymptom, 200);
+            }
+
+            function getTimeStr() {
+                return new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+            }
+
+            function appendMsg(role, content, isHTML = false) {
+                const div = document.createElement('div');
+                div.className = 'msg ' + role;
+                let inner = '';
+                if (role === 'ai') inner += `<div class="msg-sender">AaharAI</div>`;
+                if (isHTML) {
+                    inner += `<div class="msg-bubble">${content}</div>`;
+                } else {
+                    inner += `<div class="msg-bubble">${escapeHTML(content)}</div>`;
+                }
+                inner += `<div class="msg-time">${getTimeStr()}</div>`;
+                div.innerHTML = inner;
+                chatMessages.appendChild(div);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                return div;
+            }
+
+            function escapeHTML(str) {
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+
+            function showTyping() {
+                const div = document.createElement('div');
+                div.className = 'msg ai';
+                div.id = 'typing-indicator';
+                div.innerHTML = `
       <div class="msg-sender">AaharAI</div>
       <div class="typing-indicator" aria-label="AaharAI is typing">
         <div class="typing-dot"></div>
         <div class="typing-dot"></div>
         <div class="typing-dot"></div>
       </div>`;
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function removeTyping() {
-            const t = document.getElementById('typing-indicator');
-            if (t) t.remove();
-        }
-
-        const responses = {
-            fatigue: {
-                text: `🔍 <strong>Analysis:</strong> Your symptoms suggest <em>Iron and Vitamin B12 deficiency</em> — very common in Indian diets due to low meat consumption and tea-with-meals habit.`,
-                eat: ['🥬 Spinach (palak)', '🫘 Masoor/Chana dal', '🌱 Jaggery (gud)', '🥕 Beetroot', '🫐 Amla (Vit C for iron absorption)', '🥚 Eggs or Paneer'],
-                avoid: ['🍵 Tea/coffee within 1h of meals', '🧃 Packaged juices', '❌ Skipping breakfast'],
-                tip: '💡 <strong>Quick Tip:</strong> Add a small piece of jaggery after your dal for better iron absorption. Drink nimbu pani between meals — Vitamin C doubles iron uptake!'
-            },
-            acidity: {
-                text: `🔍 <strong>Analysis:</strong> Your symptoms point to <em>Acid Reflux / Hyperacidity</em>. In Indian diets, spicy food, empty-stomach chai, and large irregular meals are the main triggers.`,
-                eat: ['🍌 Banana (on empty stomach)', '🥛 Cold milk (small sip)', '🌿 Ajwain water (morning)', '🫚 Coconut water', '🥗 Boiled veggies', '🍚 Soft khichdi'],
-                avoid: ['🍛 Very spicy food', '🍟 Fried snacks (samosa, pakoda)', '☕ Tea on empty stomach', '🥤 Carbonated drinks', '🌶️ Excess red chilli'],
-                tip: '💡 <strong>Quick Fix:</strong> Soak 1 tsp ajwain in water overnight. Drink it first thing in the morning. In 3–5 days, you should notice significant relief!'
-            },
-            hairfall: {
-                text: `🔍 <strong>Analysis:</strong> Hair fall in Indian women often signals <em>Protein, Zinc, and Iron deficiency</em> — worsened by crash dieting, stress, and low protein intake.`,
-                eat: ['🥚 Eggs or Paneer (daily protein)', '🎃 Pumpkin seeds (zinc)', '🫐 Amla (collagen boost)', '🥜 Groundnuts / Almonds', '🥬 Methi leaves', '🌿 Curry leaves'],
-                avoid: ['🥗 Crash/fad dieting', '🍞 Excess refined maida', '❌ Skipping meals', '🍬 Excess sugar', '🥤 Carbonated drinks'],
-                tip: '💡 <strong>Dadi ka Nuskha:</strong> Soak methi seeds overnight, blend into a paste, apply on scalp 30 mins before hair wash. Also eat 5 soaked almonds every morning!'
-            },
-            bloating: {
-                text: `🔍 <strong>Analysis:</strong> Bloating is usually caused by <em>poor gut bacteria balance, excess maida intake, or swallowing air</em> while eating — all very common in urban Indian lifestyles.`,
-                eat: ['🌿 Jeera water (daily morning)', '🍶 Fresh curd / chaas', '🍚 Soft khichdi', '🫚 Ghee (1 tsp) with rice', '🥒 Cucumber & mint', '🍵 Saunf tea after meals'],
-                avoid: ['🍞 Maida-based foods (bread, biscuits)', '🥤 Carbonated drinks', '🫘 Raw salads (gas forming)', '🧅 Excess onion & garlic', '🌮 Packaged/fast food'],
-                tip: '💡 <strong>Quick Relief:</strong> Boil 1 tsp jeera + 1 tsp saunf in 2 cups water for 10 mins. Sip warm throughout the day. Your bloating should reduce by evening!'
+                chatMessages.appendChild(div);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-        };
 
-        function getAIResponse(input) {
-            const lower = input.toLowerCase();
-            let key = null;
-            if (/fatigue|tired|exhausted|weak|थका|थकान|energy/.test(lower)) key = 'fatigue';
-            else if (/acidity|acid|gas|heartburn|burning|jalan|जलन/.test(lower)) key = 'acidity';
-            else if (/hair|hairfall|hair fall|hair loss|baal|बाल/.test(lower)) key = 'hairfall';
-            else if (/bloat|bloating|full|stomach|पेट|phulna/.test(lower)) key = 'bloating';
-            return key ? responses[key] : null;
-        }
+            function removeTyping() {
+                const t = document.getElementById('typing-indicator');
+                if (t) t.remove();
+            }
 
-        function buildResponseHTML(resp) {
-            const eatItems = resp.eat.map(f => `<li>${f}</li>`).join('');
-            const avoidItems = resp.avoid.map(f => `<li>${f}</li>`).join('');
-            return `
+            const responses = {
+                fatigue: {
+                    text: `🔍 <strong>Analysis:</strong> Your symptoms suggest <em>Iron and Vitamin B12 deficiency</em> — very common in Indian diets due to low meat consumption and tea-with-meals habit.`,
+                    eat: ['🥬 Spinach (palak)', '🫘 Masoor/Chana dal', '🌱 Jaggery (gud)', '🥕 Beetroot', '🫐 Amla (Vit C for iron absorption)', '🥚 Eggs or Paneer'],
+                    avoid: ['🍵 Tea/coffee within 1h of meals', '🧃 Packaged juices', '❌ Skipping breakfast'],
+                    tip: '💡 <strong>Quick Tip:</strong> Add a small piece of jaggery after your dal for better iron absorption. Drink nimbu pani between meals — Vitamin C doubles iron uptake!'
+                },
+                acidity: {
+                    text: `🔍 <strong>Analysis:</strong> Your symptoms point to <em>Acid Reflux / Hyperacidity</em>. In Indian diets, spicy food, empty-stomach chai, and large irregular meals are the main triggers.`,
+                    eat: ['🍌 Banana (on empty stomach)', '🥛 Cold milk (small sip)', '🌿 Ajwain water (morning)', '🫚 Coconut water', '🥗 Boiled veggies', '🍚 Soft khichdi'],
+                    avoid: ['🍛 Very spicy food', '🍟 Fried snacks (samosa, pakoda)', '☕ Tea on empty stomach', '🥤 Carbonated drinks', '🌶️ Excess red chilli'],
+                    tip: '💡 <strong>Quick Fix:</strong> Soak 1 tsp ajwain in water overnight. Drink it first thing in the morning. In 3–5 days, you should notice significant relief!'
+                },
+                hairfall: {
+                    text: `🔍 <strong>Analysis:</strong> Hair fall in Indian women often signals <em>Protein, Zinc, and Iron deficiency</em> — worsened by crash dieting, stress, and low protein intake.`,
+                    eat: ['🥚 Eggs or Paneer (daily protein)', '🎃 Pumpkin seeds (zinc)', '🫐 Amla (collagen boost)', '🥜 Groundnuts / Almonds', '🥬 Methi leaves', '🌿 Curry leaves'],
+                    avoid: ['🥗 Crash/fad dieting', '🍞 Excess refined maida', '❌ Skipping meals', '🍬 Excess sugar', '🥤 Carbonated drinks'],
+                    tip: '💡 <strong>Dadi ka Nuskha:</strong> Soak methi seeds overnight, blend into a paste, apply on scalp 30 mins before hair wash. Also eat 5 soaked almonds every morning!'
+                },
+                bloating: {
+                    text: `🔍 <strong>Analysis:</strong> Bloating is usually caused by <em>poor gut bacteria balance, excess maida intake, or swallowing air</em> while eating — all very common in urban Indian lifestyles.`,
+                    eat: ['🌿 Jeera water (daily morning)', '🍶 Fresh curd / chaas', '🍚 Soft khichdi', '🫚 Ghee (1 tsp) with rice', '🥒 Cucumber & mint', '🍵 Saunf tea after meals'],
+                    avoid: ['🍞 Maida-based foods (bread, biscuits)', '🥤 Carbonated drinks', '🫘 Raw salads (gas forming)', '🧅 Excess onion & garlic', '🌮 Packaged/fast food'],
+                    tip: '💡 <strong>Quick Relief:</strong> Boil 1 tsp jeera + 1 tsp saunf in 2 cups water for 10 mins. Sip warm throughout the day. Your bloating should reduce by evening!'
+                }
+            };
+
+            function getAIResponse(input) {
+                const lower = input.toLowerCase();
+                let key = null;
+                if (/fatigue|tired|exhausted|weak|थका|थकान|energy/.test(lower)) key = 'fatigue';
+                else if (/acidity|acid|gas|heartburn|burning|jalan|जलन/.test(lower)) key = 'acidity';
+                else if (/hair|hairfall|hair fall|hair loss|baal|बाल/.test(lower)) key = 'hairfall';
+                else if (/bloat|bloating|full|stomach|पेट|phulna/.test(lower)) key = 'bloating';
+                return key ? responses[key] : null;
+            }
+
+            function buildResponseHTML(resp) {
+                const eatItems = resp.eat.map(f => `<li>${f}</li>`).join('');
+                const avoidItems = resp.avoid.map(f => `<li>${f}</li>`).join('');
+                return `
       ${resp.text}
       <div class="ai-response-card">
         <div class="eat-avoid">
@@ -2489,30 +2522,30 @@
       <br><br>📅 <strong>Want a full 7-Day Meal Plan</strong> using these foods? Tap the button below — it's personalized for your state's cuisine!
       <br><br><button onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(135deg,#C96B2B,#E0521A);color:white;border:none;padding:10px 20px;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.82rem;">🌿 See 7-Day Plan →</button>
     `;
-        }
+            }
 
-        function sendSymptom() {
-            const text = symptomInput.value.trim();
-            if (!text) return;
-            symptomInput.value = '';
+            function sendSymptom() {
+                const text = symptomInput.value.trim();
+                if (!text) return;
+                symptomInput.value = '';
 
-            // User message
-            appendMsg('user', text);
+                // User message
+                appendMsg('user', text);
 
-            // Show typing
-            showTyping();
+                // Show typing
+                showTyping();
 
-            setTimeout(() => {
-                removeTyping();
-                const resp = getAIResponse(text);
-                if (resp) {
-                    appendMsg('ai', buildResponseHTML(resp), true);
-                } else {
-                    appendMsg('ai', `🙏 Thank you for sharing that. To give you the most accurate dietary guidance, could you describe your symptoms more specifically?\n\nFor example:\n• "I feel very tired after lunch"\n• "I have acidity and gas"\n• "My hair is falling excessively"\n• "I feel bloated after meals"\n\nOr try clicking one of the quick symptom buttons on the left!`, false);
-                }
-            }, 1600 + Math.random() * 600);
-        }
-    </script>
+                setTimeout(() => {
+                    removeTyping();
+                    const resp = getAIResponse(text);
+                    if (resp) {
+                        appendMsg('ai', buildResponseHTML(resp), true);
+                    } else {
+                        appendMsg('ai', `🙏 Thank you for sharing that. To give you the most accurate dietary guidance, could you describe your symptoms more specifically?\n\nFor example:\n• "I feel very tired after lunch"\n• "I have acidity and gas"\n• "My hair is falling excessively"\n• "I feel bloated after meals"\n\nOr try clicking one of the quick symptom buttons on the left!`, false);
+                    }
+                }, 1600 + Math.random() * 600);
+            }
+        </script>
 
 </body>
 
